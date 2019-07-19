@@ -17,7 +17,7 @@ public:
 			dict.emplace_back(word);
 		}
 
-		m_spBloomFilter = std::make_shared<BloomFilter>(dict.size(), 0.05);
+		m_spBloomFilter = std::make_shared<BloomFilter>(dict.size(), m_errorThreshold);
 		m_spBloomFilter->Initialize();
 		for (auto& item : dict)
 		{
@@ -32,4 +32,5 @@ public:
 
 private:
 	std::shared_ptr<BloomFilter> m_spBloomFilter;
+	double m_errorThreshold = 0.05;
 };
